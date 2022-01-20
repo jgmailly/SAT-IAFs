@@ -1,19 +1,31 @@
+### Functions for parsing an apx file
+
 import sys
 
+# Returns the name of an uncertain argument
+# identified in an apx line
 def parse_uncertain_arg(apx_line):
     return apx_line[5:-2]
 
+# Returns the name of a certain argument
+# identified in an apx line
 def parse_certain_arg(apx_line):
     return apx_line[4:-2]
 
+# Returns the names of the arguments in an uncertain attack
+# identified in an apx line
 def parse_uncertain_att(apx_line):
     arg_names = apx_line[5:-2]
     return arg_names.split(",")
 
+# Returns the names of the arguments in a certain attack
+# identified in an apx line
 def parse_certain_att(apx_line):
     arg_names = apx_line[4:-2]
     return arg_names.split(",")
 
+# Parses an apx file and returns the lists of
+# certain arguments, uncertain arguments, certain attacks and uncertain attacks
 def parse(filename):
     with open(filename) as apxfile:
         apx_lines = apxfile.read().splitlines()

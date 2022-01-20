@@ -1,12 +1,17 @@
 import sys
 
+# Number of variables in the formula
 n_vars = 0
+
+# Clauses of the formula
 clauses = []
 
 ## args[i] -> i+1
 ## u_args[i] -> len(args) + i + 1
 ## y_a -> x_a + nb_args
 
+# Returns the integer value corresponding to an argument name
+# Useful for building clauses to feed the SAT solver
 def sat_var_from_arg_name(argname, args, u_args):
     if argname in args:
         return args.index(argname) + 1
@@ -15,6 +20,8 @@ def sat_var_from_arg_name(argname, args, u_args):
     else:
         sys.exit("Unknown argument name: ({argname})")
 
+# Returns the set of certain attacks of an argument,
+# i.e. the certain arguments that certainly attack it
 def get_certain_attackers(argument, args, atts):
     attackers = []
     for attack in atts:
@@ -22,12 +29,18 @@ def get_certain_attackers(argument, args, atts):
             attackers.append(attack[0])
     return attackers
 
+# Returns the set of attacks of an arguments
+# Both certain and uncertain attacks, with certain or uncertain attack
 def get_all_attackers(argument, args, u_args, atts, u_atts):
     attackers = []
     for attack in atts + u_atts:
         if attack[1] == argument:
             attackers.append(attack[0])
     return attackers
+
+
+### The following functions modify the global variable clauses
+### to contain the CNF encoding of the chosen semantics
 
 ##### Weak semantics
 def weak_conflict_free(args, u_args, atts, u_atts):
@@ -153,13 +166,16 @@ def strong_stable(args, u_args, atts, u_atts):
 
 
 ##### Encoding generation
+# Returns the string representation of a clause
+# in Dimacs format
 def write_dimacs_clause(clause):
     dimacs_clause = ""
     for literal in clause:
         dimacs_clause += (str(literal) + " ")
     dimacs_clause += "0\n"
     return dimacs_clause
-        
+
+# Returns the CNF encoding in Dimacs format, for a given semantics
 def write_dimacs(args, u_args, atts, u_atts, semantics):
     if semantics == "CF_W":
         weak_conflict_free(args, u_args, atts, u_atts)
@@ -185,6 +201,8 @@ def write_dimacs(args, u_args, atts, u_atts, semantics):
         dimacs += write_dimacs_clause(clause)
     return dimacs
 
+# Returns the list of the clauses corresponding to the encoding
+# of a given semantics
 def get_clauses(args, u_args, atts, u_atts, semantics):
     global clauses
     if semantics == "CF_W":
@@ -206,17 +224,15 @@ def get_clauses(args, u_args, atts, u_atts, semantics):
     else:
         sys.exit("Unkown semantics: ({semantics})")
 
-    ### Non-empty extension
-    #non_empty = [(i+1) for i in range(len(args+u_args))]
-    #clauses.append(non_empty)
-
     ### Tautological clauses with arguments identifiers
+    ### for forcing the number of variables in the solver
     for i in range(len(args+u_args)):
         tautology = [(i+1), -(i+1)]
         clauses.append(tautology)
     
     return clauses
-    
+
+# Prints an extension to the standard output
 def print_extension(extension):
     if extension == []:
         print("[]")
