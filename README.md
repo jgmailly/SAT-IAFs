@@ -10,9 +10,9 @@ Possible semantics: CO_S, CO_W, ST_S, ST_W corresponding to the strong complete,
 The apx file describing the incomplete argumentation framework is as follows (see https://bitbucket.org/andreasniskanen/taeydennae/src/master/).
 
     arg(x).   # x is a definite argument
-    ?arg(x)   # x is an uncertain argument
-    att(x,y)  # (x,y) is a definite attack
-    ?att(x,y) # (x,y) is an uncertain attack
+    ?arg(x).   # x is an uncertain argument
+    att(x,y).  # (x,y) is a definite attack
+    ?att(x,y). # (x,y) is an uncertain attack
 
 
 **Related publication:**  
