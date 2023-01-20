@@ -18,7 +18,7 @@ def sat_var_from_arg_name(argname, args, u_args):
     elif argname in u_args:
         return len(args) + u_args.index(argname) + 1
     else:
-        sys.exit("Unknown argument name: ({argname})")
+        sys.exit(f"Unknown argument name: ({argname})")
 
 # Returns the set of certain attacks of an argument,
 # i.e. the certain arguments that certainly attack it
