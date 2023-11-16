@@ -1,6 +1,6 @@
 # SAT-based Solver for Incomplete Argumentation Frameworks
 
-In the current version, this software computes one extension (SE problem) of an Incomplete Argumentation Framework, under the semantics defined in [1].
+In the current version, this software computes one extension (SE problem) of an Incomplete Argumentation Framework, under the semantics defined in [1,2].
 
 **Software usage**  
 
@@ -17,3 +17,4 @@ The apx file describing the incomplete argumentation framework is as follows (se
 
 **Related publication:**  
 [1] Jean-Guy Mailly, Extension-Based Semantics for Incomplete Argumentation Frameworks. CLAR 2021: 322-341
+[2] Jean-Guy Mailly, Extension-based semantics for incomplete argumentation frameworks: properties, complexity and algorithms. J. Log. Comput. 33(2): 406-435 (2023)
