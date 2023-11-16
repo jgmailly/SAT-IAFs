@@ -17,4 +17,5 @@ The apx file describing the incomplete argumentation framework is as follows (se
 
 **Related publication:**  
 [1] Jean-Guy Mailly, Extension-Based Semantics for Incomplete Argumentation Frameworks. CLAR 2021: 322-341
+
 [2] Jean-Guy Mailly, Extension-based semantics for incomplete argumentation frameworks: properties, complexity and algorithms. J. Log. Comput. 33(2): 406-435 (2023)
